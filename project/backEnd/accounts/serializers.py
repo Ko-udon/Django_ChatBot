@@ -4,15 +4,15 @@ from .models import CustomUser
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
-# 회원가입
-class JoinSerializer(serializers.ModelSerializer):
+# User serializer
+class UserSerializer(serializers.ModelSerializer):
     
-    email = serializers.EmailField(required=True)
-    password = serializers.CharField(
-        max_length = 128,
-        min_length = 8,
-        write_only = True
-    )
+    # email = serializers.EmailField(required=True)
+    # password = serializers.CharField(
+    #     max_length = 128,
+    #     min_length = 8,
+    #     write_only = True
+    # )
     
     class Meta:
         model = CustomUser
@@ -22,7 +22,11 @@ class JoinSerializer(serializers.ModelSerializer):
             ]
         
     def create(self, validated_data):
-        return CustomUser.objects.create_user(**validated_data)
+        user = CustomUser.objects.create_user(
+            email = validated_data['email'],
+            password = validated_data['password']
+        )
+        return user
     
 # 로그인
 class LoginSerializer(serializers.Serializer):

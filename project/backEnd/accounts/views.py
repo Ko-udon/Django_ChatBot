@@ -1,10 +1,9 @@
 # authentication > api > views.py
 from rest_framework import status
-from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import LoginSerializer, JoinSerializer
+from .serializers import *
 
 
 # rendering
@@ -15,57 +14,14 @@ from .renderers import UserJSONRenderer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-
-
-class LoginAPIView(APIView):
-    # permission_classes = (AllowAny,)
-    # renderer_classes = (UserJSONRenderer,)
-    # serializer_class = LoginSerializer
-    
-    # # 1.
-    # def post(self, request):
-    #     # 2.
-    #     user = request.data
-        
-    #     # 3.
-    #     serializer = self.serializer_class(data=user)
-    #     serializer.is_valid(raise_exception=True)
-        
-    #     # 4.
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        user = request.data
-
-        serializer = LoginSerializer(data = user)
-        serializer.is_valid(raise_exception=True)
-
-        token = TokenObtainPairSerializer.get_token(user)
-        refresh_token = str(token)
-        access_token = str(token.access_token)
-        res = Response(
-            {
-                "user": user.email,
-                "message": "login successs",
-                "token": {
-                    "access": access_token,
-                    "refresh": refresh_token,
-                },
-            },
-            status=status.HTTP_200_OK,
-        )
-        
-        # jwt 토큰 => 쿠키에 저장
-        res.set_cookie("access", access_token, httponly=True)
-        res.set_cookie("refresh", refresh_token, httponly=True)
-        
-        return res
-    
-
-      # return Response(serializer.data, status=status.HTTP_200_OK)
-    
+# login
+import jwt
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
+from django.contrib.auth import authenticate
+from django.shortcuts import render, get_object_or_404
+from chatProject.settings import SECRET_KEY
+from .models import CustomUser as User
 
 
 @api_view(['GET'])
@@ -75,9 +31,10 @@ def mypage(request):
     
     return Response(content)
 
-class JoinView(APIView):
+# 회원가입
+class SignUpView(APIView):
     def post(self, request):
-        serializer = JoinSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             
@@ -104,3 +61,97 @@ class JoinView(APIView):
             return res
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+# 로그인
+class UserAuthAPIView(APIView):
+
+    # 유저 정보 확인
+    def get(self, request):
+        try:
+            # access token을 decode 해서 유저 id 추출 => 유저 식별
+            access = request.COOKIES['access']
+            payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+            pk = payload.get('user_id')
+            user = get_object_or_404(User, pk=pk)
+            serializer = UserSerializer(instance=user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        except(jwt.exceptions.ExpiredSignatureError):
+            # 토큰 만료 시 토큰 갱신
+            data = {'refresh': request.COOKIES.get('refresh', None)}
+            serializer = TokenRefreshSerializer(data=data)
+            if serializer.is_valid(raise_exception=True):
+                access = serializer.data.get('access', None)
+                refresh = serializer.data.get('refresh', None)
+                payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+                pk = payload.get('user_id')
+                user = get_object_or_404(User, pk=pk)
+                serializer = UserSerializer(instance=user)
+                res = Response(serializer.data, status=status.HTTP_200_OK)
+                res.set_cookie('access', access)
+                res.set_cookie('refresh', refresh)
+                return res
+            raise jwt.exceptions.InvalidTokenError
+
+        except(jwt.exceptions.InvalidTokenError):
+            # 사용 불가능한 토큰일 때
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+
+    # 로그인
+    def post(self, request):
+        # 인증
+        user = authenticate(
+            email = request.data.get('email'),
+            password = request.data.get('password')
+        )
+
+        if user is not None:
+            serializer = UserSerializer(user)
+
+            token = TokenObtainPairSerializer.get_token(user)
+            refresh_token = str(token)
+            access_token = str(token.access_token)
+            res = Response(
+                {
+                    "user": serializer.data,
+                    "message": "login success",
+                    "token": {
+                        "access": access_token,
+                        "refresh": refresh_token,
+                    },
+                },
+                status = status.HTTP_200_OK,
+            )
+
+            res.set_cookie("access", access_token, httponly=True)
+            res.set_cookie("refresh", refresh_token, httponly=True)
+            return res
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+
+    # 로그아웃
+    def delete(self, request):
+        # 쿠키에 저장된 토큰 삭제 => 로그아웃 처리
+        response = Response({
+            "message": "Logout success"
+            }, status=status.HTTP_202_ACCEPTED)
+        response.delete_cookie("access")
+        response.delete_cookie("refresh")
+        return response
+        
+    
+    
+
+# # test
+# # views.py
+# from rest_framework import viewsets
+# from rest_framework.permissions import IsAuthenticated
+# from .serializers import *
+
+# # jwt 토근 인증 확인용 뷰셋
+# # Header - Authorization : Bearer <발급받은토큰>
+# class UserViewSet(viewsets.ModelViewSet):
+#     permission_classes = [IsAuthenticated]
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer

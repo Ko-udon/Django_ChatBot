@@ -1,10 +1,15 @@
 from django.urls import path, include
-from .views import LoginAPIView, JoinView
+from .views import SignUpView, UserAuthAPIView
 from accounts import views
+
+# 토큰 재발급
+from rest_framework_simplejwt.views import TokenRefreshView
+
 
 
 urlpatterns = [
-    path('login', LoginAPIView.as_view()),
     path('mypage', view=views.mypage),
-    path('join', JoinView.as_view()),
+    path('signup/', SignUpView.as_view()), # 회원가입
+    path("auth/", UserAuthAPIView.as_view()), # post 로그인, delete 로그아웃, get 유저확인
+    path("auth/refresh/", TokenRefreshView.as_view()),
 ]
