@@ -4,7 +4,7 @@ from .models import CustomUser
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
-# User serializer
+# 회원가입
 class UserSerializer(serializers.ModelSerializer):
     
     # email = serializers.EmailField(required=True)

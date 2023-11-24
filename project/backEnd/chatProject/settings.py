@@ -1,8 +1,20 @@
 from pathlib import Path
 from datetime import timedelta
 
+from environ import Env
+from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = Env()
+# .env 경로에 파일이 있으면, 환경변수로서 읽어들입니다.
+env_path: Path = BASE_DIR / '.env'
+if env_path.is_file():
+    # .env 파일에 한글이 포함된 경우도 처리하기 위해 encoding="utf8"을 지정해줍니다.
+    # encoding="utf8"을 지정하지 않으면 윈도우에서 구동 시에 오류가 발생합니다.
+    with env_path.open('rt', encoding='utf-8') as f:
+        env.read_env(f, overwrite=True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'chat',
 
     # 설치한 라이브러리들
     'rest_framework',
@@ -37,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
 
     # cors 허용
     'corsheaders',
@@ -111,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = env.str("LANGUAGE_CODE", default="en-us")
 
 TIME_ZONE = 'UTC'
 
@@ -156,3 +170,5 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+OPENAI_API_KEY = env.str("OPENAI_API_KEY")
