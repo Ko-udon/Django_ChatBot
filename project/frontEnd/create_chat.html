@@ -105,46 +105,48 @@
 
                             <div class="card-body">
                                 <div class="card border-dark">
-                                    <form action="" method="post" novalidate>
-                                        
-
-                                        <div class="card-body"><div class="row mb-3 fw-bold"><label class="col-sm-2 col-form-label" for="id_language">대화 언어</label><div class="col-sm-10"><select name="language" class="form-select" id="id_language">
-                                        <option value="en-US" selected>English</option>
-                                        
-                                        <option value="ja-JP">Japanese</option>
-                                        
-                                        <option value="ko-KR">Korean</option>
-                                        
-                            
-                                        </select>
-                                    </div>
-                                </div>
+                                    <form method="post" id = 'create_chat-form'>
+                                        <div class="card-body">
+                                            <div class="row mb-3 fw-bold">
+                                                <label class="col-sm-2 col-form-label" for="id_language">대화 언어
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <select name="language" class="form-select" id="id_language">
+                                                    <option value="en-US" selected>English</option>
+                                                    
+                                                    <option value="ja-JP">Japanese</option>
+                                                    
+                                                    <option value="ko-KR">Korean</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
                                 <div class="row mb-3 fw-bold">
                                     <label class="col-sm-2 col-form-label" for="id_situation">상황
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="situation" maxlength="100" class="form-control" required id="id_situation">
+                                        <input type="text" name="situation" maxlength="100" class="form-control" id = "id_situation">
                                     </div>
                                 </div>
                                 <div class="row mb-3 fw-bold">
                                     <label class="col-sm-2 col-form-label" for="id_situation">내 역할
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="situation" maxlength="100" class="form-control" required id="id_situation">
+                                        <input type="text" name="situation" maxlength="100" class="form-control" id = "id_myRole">
                                     </div>
                                 </div>
                                 <div class="row mb-3 fw-bold">
                                     <label class="col-sm-2 col-form-label" for="id_situation">챗봇 역할
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="situation" maxlength="100" class="form-control" required id="id_situation">
+                                        <input type="text" name="situation" maxlength="100" class="form-control" id = "id_chatBotRole">
                                     </div>
                                 </div>
                                     
                                 
                                 <div class="card-footer text-end" >
-                                    <input type="submit" value="저장하기" class="btn btn-primary"/>
+                                    <input type="submit"
+                                            class ="btn btn-primary" value="저장하기">
                                 </div>
 
                             </form>
@@ -157,12 +159,49 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 으헤</span>
+                        <span>Copyright &copy; Ko-udon</span>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 </body>
+<script>
+    create_chat = document.getElementById('create_chat-form')
+    create_chat.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        var language = document.getElementById('id_language').value;
+        var situation = document.getElementById('id_situation').value;
+        var myRole = document.getElementById('id_myRole').value;
+        var chatBotRole = document.getElementById('id_chatBotRole').value;
+        
+        var data = {
+            "language": language,
+            "situation": situation,
+            "my_role": myRole,
+            "gpt_role": chatBotRole,
+        };
+        console.log(data)
+        await fetch('http://127.0.0.1:8000/chat/create/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
 
+            ```location.href='login.html';
+            ```
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            
+        });
+    });
+</script>
 </html>
