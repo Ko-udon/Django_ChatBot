@@ -17,7 +17,7 @@ class CreateChatSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        user = self.context['request'].user
+        user = self.context['user']
         chat = RolePlayingRoom.objects.create(
             user_id=user
             ,**validated_data

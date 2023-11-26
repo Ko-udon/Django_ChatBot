@@ -26,25 +26,19 @@ class RolePlayingRoomAPIView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def post(self, request):
-        # access = request.COOKIES['access']
-        # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-        # pk = payload.get('user_id')
-        # user = get_object_or_404(User, pk=pk)
-        # # serializer = UserSerializer(instance=user)
-        
-        # print("###########user")
-        # print(user)
+        access = request.COOKIES['access']
+        payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        pk = payload.get('user_id')
+        user = get_object_or_404(User, pk=pk)
+        # serializer = UserSerializer(instance=user)      
 
-        # print("###########user")
-        # print(request.user)
-        serializer = CreateChatSerializer(data=request.data, context={'request': request})
+        serializer = CreateChatSerializer(data=request.data, context={'user': user})
         if serializer.is_valid():
             chat = serializer.save()
-            
+            print('success')
             return Response(
                 {
                     "success": True,
-                    # "user": user,
                 },
                 status=status.HTTP_200_OK,
             )
