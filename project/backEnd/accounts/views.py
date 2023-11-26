@@ -106,7 +106,7 @@ class UserAuthAPIView(APIView):
         )
 
         if user is not None:
-            serializer = UserSerializer(user)
+            serializer = LoginSerializer(user)
 
             token = TokenObtainPairSerializer.get_token(user)
             refresh_token = str(token)

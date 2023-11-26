@@ -13,39 +13,43 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import CreateChatSerializer
 
-# 아직 로그인 기능을 구현하지 않았기에, admin 앱의 로그인 기능을 활용토록 합니다.
-# 
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import permissions
+
+from chatProject.settings import SECRET_KEY
+from accounts.models import CustomUser as User
+import jwt
+from django.shortcuts import render, get_object_or_404
 class RolePlayingRoomAPIView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
     def post(self, request):
-        user = str(request.user.email)
+        # access = request.COOKIES['access']
+        # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        # pk = payload.get('user_id')
+        # user = get_object_or_404(User, pk=pk)
+        # # serializer = UserSerializer(instance=user)
+        
+        # print("###########user")
+        # print(user)
+
+        # print("###########user")
+        # print(request.user)
         serializer = CreateChatSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             chat = serializer.save()
             
-            # # jwt 토큰 접근
-            # token = TokenObtainPairSerializer.get_token(user)
-            # refresh_token = str(token)
-            # access_token = str(token.access_token)
-            # res = Response(
-            #     {
-            #         "user": serializer.data,
-            #         "message": "register successs",
-            #         "token": {
-            #             "access": access_token,
-            #             "refresh": refresh_token,
-            #         },
-            #     },
-            #     status=status.HTTP_200_OK,
-            # )
-            
             return Response(
                 {
                     "success": True,
-                    "user": user,
+                    # "user": user,
                 },
                 status=status.HTTP_200_OK,
             )
         else:
+            print("fail")
             return Response(
                 {
                     "success": False

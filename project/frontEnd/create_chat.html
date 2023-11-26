@@ -171,6 +171,10 @@
     create_chat.addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        var token = document.cookie;
+
+        console.log(token)
+        
         var language = document.getElementById('id_language').value;
         var situation = document.getElementById('id_situation').value;
         var myRole = document.getElementById('id_myRole').value;
@@ -187,6 +191,7 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                //'Authorization': 'Bearer'+ access_token
             },
             credentials: 'include',
             body: JSON.stringify(data),

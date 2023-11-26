@@ -6,14 +6,6 @@ from django.utils import timezone
 
 # 회원가입
 class UserSerializer(serializers.ModelSerializer):
-    
-    # email = serializers.EmailField(required=True)
-    # password = serializers.CharField(
-    #     max_length = 128,
-    #     min_length = 8,
-    #     write_only = True
-    # )
-    
     class Meta:
         model = CustomUser
         fields = [
