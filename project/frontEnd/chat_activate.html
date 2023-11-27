@@ -120,28 +120,26 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">채팅방 목록</h1>
-                    <p class="mb-4">생성한 채팅방 목록입니다.
-                        필요에 따라 삭제 가능합니다!
-                    </p>
+                    <h1 class="h3 mb-2 text-gray-800">채팅방</h1>
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
+                            <h6 class="m-0 font-weight-bold text-primary" id="chat_name"></h6>
                         </div>
                         <div class="card-body">
                             <ul id="chat-message-list">
         
                             
                                 <li class="chat-message">
-                                    <span class="message">Good morning, welcome to Starbucks! What can I get for you today?</span>
+                                    <span class="message">Good morning?</span>
                                 </li>
                                 <li class="chat-message me">
-                                    <span class="message">Yes, I would like a grande Americano with an extra shot of expresso and a splash of almond milk, please.</span>
+                                    <span class="message">Yes.</span>
                                 </li>
                                 <li class="chat-message">
-                                    <span class="message">Of course, that soulds like a great choice. Would you like any pastries or snacks to go with your coffee today?</span>
+                                    <span class="message">Of course, </span>
                                 </li>
         
                             </ul>
@@ -179,3 +177,24 @@
 </body>
 
 </html>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    fetch(`http://127.0.0.1:8000/chat/${id}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data){
+            console.log('Success:', data);
+            console.log('Success:', data.chat_list);
+            document.getElementById('chat_name').append(data.chat_list['situation'])
+        
+        };
+    });
+</script>

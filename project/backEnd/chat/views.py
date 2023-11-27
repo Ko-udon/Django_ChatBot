@@ -22,7 +22,7 @@ from accounts.models import CustomUser as User
 import jwt
 from django.shortcuts import render, get_object_or_404
 
-# 조회
+# 목록조회
 class RolePlayingRoomAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     model = RolePlayingRoom
@@ -78,11 +78,24 @@ class CreateRolePlayingRoomAPIView(APIView):
                 status=status.HTTP_200_OK,
             )
 
-
     # model = RolePlayingRoom
     # form_class = RolePlayingRoomForm
     # success_url = reverse_lazy("role_playing_room_new")  # 페이지 성공 후에 이동할 페이지 주소 지정
 
+# 상세보기
+class DetailRolePlayingRoomAPIView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request, pk): 
+        chat = RolePlayingRoom.objects.get(pk=pk)
+        serializer = CreateChatSerializer(chat)
+        return Response(
+                {
+                    "chat_list": serializer.data,
+                },
+                status=status.HTTP_200_OK,
+            ) 
 
 # 수정
 class EditRolePlayingRoomAPIView(APIView):
@@ -122,17 +135,8 @@ class DeleteRolePlayingRoomAPIView(APIView):
     # success_url = reverse_lazy("get_chat_list")
 
     def delete(self, request, pk):
-        # access = request.COOKIES['access']
-        # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-        # pk = payload.get('user_id')
-        # user = get_object_or_404(User, pk=pk)
-
         chat = RolePlayingRoom.objects.get(pk=pk)
         chat.delete()
-
-
-        #return Response(serializer.data)
-
 
         return Response(
                 {
