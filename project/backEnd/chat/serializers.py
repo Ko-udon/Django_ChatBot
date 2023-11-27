@@ -11,6 +11,7 @@ class CreateChatSerializer(serializers.ModelSerializer):
         ordering = ["-pk"]
         model = RolePlayingRoom
         fields = [
+            "pk",
             "language",
             "situation",
             "my_role",

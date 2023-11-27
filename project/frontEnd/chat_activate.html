@@ -14,6 +14,32 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        #chat-message-list {
+            padding: 0;
+            list-style: none;
+        }
+        .chat-message .message {
+            background-color: #3b3b3d;
+            color: #e1e1e1;
+            border-radius: 0.8em;
+            padding: 0.4em;
+            margin: 0.4em 0;
+            display: inline-block;
+            white-space: pre-wrap;
+        }
+    
+        .chat-message.me {
+            text-align: right;
+        }
+        .chat-message.me .message {
+            background-color: #1f8cff;
+            color: #fff;
+            text-align: left;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -102,38 +128,36 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Chat_list</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-
-
-                                    <thead>
-                                        <tr>
-                                            <th>언어</th>
-                                            <th>상황</th>
-                                            <th>내 역할</th>
-                                            <th>채팅봇 역할</th>
-                                            <th>-</th>
-                                            <th>-</th>
-                                        </tr>
-                                    </thead>
-                                        
-                                    
-                                    <tbody id="chat_list">
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td><button class="delete_btn">-</td>
-                                    </tbody>
-
-                                </table>
+                            <ul id="chat-message-list">
+        
+                            
+                                <li class="chat-message">
+                                    <span class="message">Good morning, welcome to Starbucks! What can I get for you today?</span>
+                                </li>
+                                <li class="chat-message me">
+                                    <span class="message">Yes, I would like a grande Americano with an extra shot of expresso and a splash of almond milk, please.</span>
+                                </li>
+                                <li class="chat-message">
+                                    <span class="message">Of course, that soulds like a great choice. Would you like any pastries or snacks to go with your coffee today?</span>
+                                </li>
+        
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex gap-2">
+                                <form id="message-form" class="d-flex gap-1 flex-grow-1">
+                                    <input type="text"
+                                           name="message"
+                                           placeholder="메시지를 입력하세요."
+                                           class="form-control flex-grow-1" />
+                                </form>
                             </div>
                         </div>
                     </div>
+                    
 
                 </div>
                 <!-- /.container-fluid -->
@@ -155,68 +179,3 @@
 </body>
 
 </html>
-
-<script>
-    fetch('http://127.0.0.1:8000/chat/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data){
-            console.log('Success:', data);
-
-            const chat_list = document.getElementById('chat_list');
-            chat_list.innerHTML = ''
-            data.chat_list.forEach(item => {
-                // 새로운 div 요소를 생성하고
-                const tr = document.createElement('tr');
-                tr.innerHTML = 
-                '<td>'+item['language']+'</td>'+
-                '<td>'+item['situation']+'</td>'+
-                '<td>'+item['my_role']+'</td>'+
-                '<td>'+item['gpt_role']+'</td>'+
-                '<td>'+'<a class="enter_btn" href="#" pk='+item['pk']+'>'+'입장'+'</td>'
-                '<td>'+'<a class="delete_btn" href="#" pk='+item['pk']+'>'+'삭제'+'</td>'
-
-                chat_list.append(tr);
-            });
-
-            // 채팅방 입장
-            
-
-
-            // 채팅방 삭제
-            const delete_chat = document.getElementsByClassName('delete_btn');
-
-            Array.from(delete_chat).forEach(button => {
-                button.addEventListener('click', function() {
-                    const pk = this.getAttribute('pk');  // 게시글의 ID를 가져옵니다.
-                    console.log('ac');
-                    
-                    fetch(`http://127.0.0.1:8000/chat/${pk}/delete/`, {
-                        method: 'DELETE',
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        alert('삭제되었습니다');
-                        location.reload();
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                    
-                });
-            });
-        }
-            
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-</script>

@@ -22,6 +22,7 @@ from accounts.models import CustomUser as User
 import jwt
 from django.shortcuts import render, get_object_or_404
 
+# 조회
 class RolePlayingRoomAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     model = RolePlayingRoom
@@ -46,7 +47,7 @@ class RolePlayingRoomAPIView(APIView):
             ) 
 
 
-
+# 생성
 class CreateRolePlayingRoomAPIView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -83,7 +84,7 @@ class CreateRolePlayingRoomAPIView(APIView):
     # success_url = reverse_lazy("role_playing_room_new")  # 페이지 성공 후에 이동할 페이지 주소 지정
 
 
-
+# 수정
 class EditRolePlayingRoomAPIView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -113,3 +114,29 @@ class EditRolePlayingRoomAPIView(APIView):
                 },
                 status=status.HTTP_200_OK,
             )
+        
+# 삭제
+class DeleteRolePlayingRoomAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    model = RolePlayingRoom
+    # success_url = reverse_lazy("get_chat_list")
+
+    def delete(self, request, pk):
+        # access = request.COOKIES['access']
+        # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        # pk = payload.get('user_id')
+        # user = get_object_or_404(User, pk=pk)
+
+        chat = RolePlayingRoom.objects.get(pk=pk)
+        chat.delete()
+
+
+        #return Response(serializer.data)
+
+
+        return Response(
+                {
+                    "Delete_result": "Success"
+                },
+                status=status.HTTP_200_OK,
+            ) 
