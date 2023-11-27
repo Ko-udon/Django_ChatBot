@@ -86,7 +86,7 @@ class CreateRolePlayingRoomAPIView(APIView):
 class DetailRolePlayingRoomAPIView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
-
+    
     def get(self, request, pk): 
         chat = RolePlayingRoom.objects.get(pk=pk)
         serializer = CreateChatSerializer(chat)
@@ -98,17 +98,14 @@ class DetailRolePlayingRoomAPIView(APIView):
             ) 
 
 # 수정
-class EditRolePlayingRoomAPIView(APIView):
+class UpdateRolePlayingRoomAPIView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
-    def post(self, request):
-        access = request.COOKIES['access']
-        payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-        pk = payload.get('user_id')
-        user = get_object_or_404(User, pk=pk)     
-
-        serializer = CreateChatSerializer(data=request.data, context={'user': user})
+    def post(self, request, pk):
+        chat = RolePlayingRoom.objects.get(pk=pk)
+        
+        serializer = CreateChatSerializer(chat, data=request.data)
         if serializer.is_valid():
             chat = serializer.save()
             print('success')
@@ -127,7 +124,6 @@ class EditRolePlayingRoomAPIView(APIView):
                 },
                 status=status.HTTP_200_OK,
             )
-        
 # 삭제
 class DeleteRolePlayingRoomAPIView(APIView):
     authentication_classes = [JWTAuthentication]

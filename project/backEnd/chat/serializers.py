@@ -25,3 +25,11 @@ class CreateChatSerializer(serializers.ModelSerializer):
             ,**validated_data
         )
         return chat
+    
+    def update(self, chat, validated_data):
+        chat.language = validated_data.get('language', chat.language)
+        chat.situation = validated_data.get('situation', chat.situation)
+        chat.my_role = validated_data.get('my_role', chat.my_role)
+        chat.gpt_role = validated_data.get('gpt_role', chat.gpt_role)
+        chat.save()
+        return chat
