@@ -5,8 +5,6 @@ from accounts import views
 # 토큰 재발급
 from rest_framework_simplejwt.views import TokenRefreshView
 
-
-
 urlpatterns = [
     path('mypage', view=views.mypage),
     path('signup/', SignUpView.as_view()), # 회원가입

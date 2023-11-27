@@ -106,7 +106,9 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+
+
                                     <thead>
                                         <tr>
                                             <th>언어</th>
@@ -118,7 +120,9 @@
                                         </tr>
                                     </thead>
                                     
-                                    <tbody>
+                                    
+                                    <tbody id="chat_list">
+                                        <!--
                                         <tr>
                                             <td>한글</td>
                                             <td>끝말잇기</td>
@@ -146,8 +150,9 @@
                                             <td><a href = 'chat_list.html' class="btn-user btn-block">
                                                 삭제</a></td>
                                         </tr>
-                                        
+                                        -->
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -164,7 +169,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 으헤</span>
+                        <span>Copyright &copy; Ko</span>
                     </div>
                 </div>
             </footer>
@@ -173,3 +178,37 @@
 </body>
 
 </html>
+
+<script>
+    fetch('http://127.0.0.1:8000/chat/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+
+        const chat_list = document.getElementById('chat_list');
+        
+        data.chat_list.forEach(item => {
+            // 새로운 div 요소를 생성하고
+            const tr = document.createElement('tr');
+            tr.innerHTML = 
+            '<td>'+item['language']+'</td>'+
+            '<td>'+item['situation']+'</td>'+
+            '<td>'+item['my_role']+'</td>'+
+            '<td>'+item['gpt_role']+'</td>'+
+            '<td>'+'<a href = >'+'입장'+'</td>'+
+            '<td>'+'<a href = >'+'삭제'+'</td>'
+
+            chat_list.append(tr);
+        });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+</script>

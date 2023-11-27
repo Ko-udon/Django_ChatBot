@@ -21,7 +21,33 @@ from chatProject.settings import SECRET_KEY
 from accounts.models import CustomUser as User
 import jwt
 from django.shortcuts import render, get_object_or_404
+
 class RolePlayingRoomAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    model = RolePlayingRoom
+
+    def get(self, request):
+        access = request.COOKIES['access']
+        payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        pk = payload.get('user_id')
+        user = get_object_or_404(User, pk=pk)
+
+        chats = RolePlayingRoom.objects.filter(user_id_id = user.pk)
+        serializer = CreateChatSerializer(chats, many = True)
+
+        #return Response(serializer.data)
+
+
+        return Response(
+                {
+                    "chat_list": serializer.data,
+                },
+                status=status.HTTP_200_OK,
+            ) 
+
+
+
+class CreateRolePlayingRoomAPIView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
@@ -29,8 +55,7 @@ class RolePlayingRoomAPIView(APIView):
         access = request.COOKIES['access']
         payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
         pk = payload.get('user_id')
-        user = get_object_or_404(User, pk=pk)
-        # serializer = UserSerializer(instance=user)      
+        user = get_object_or_404(User, pk=pk)     
 
         serializer = CreateChatSerializer(data=request.data, context={'user': user})
         if serializer.is_valid():
@@ -42,6 +67,7 @@ class RolePlayingRoomAPIView(APIView):
                 },
                 status=status.HTTP_200_OK,
             )
+        # 예외처리 필요
         else:
             print("fail")
             return Response(
@@ -56,12 +82,34 @@ class RolePlayingRoomAPIView(APIView):
     # form_class = RolePlayingRoomForm
     # success_url = reverse_lazy("role_playing_room_new")  # 페이지 성공 후에 이동할 페이지 주소 지정
 
-    
 
-    # def form_valid(self, form):
-    #     role_playing_room = form.save(commit=False)
-    #     role_playing_room.user = self.request.user
-    #     response = super().form_valid(form)
-    #     messages.success(self.request, "새로운 채팅방을 생성했습니다.")
-    #     return response
 
+class EditRolePlayingRoomAPIView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def post(self, request):
+        access = request.COOKIES['access']
+        payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        pk = payload.get('user_id')
+        user = get_object_or_404(User, pk=pk)     
+
+        serializer = CreateChatSerializer(data=request.data, context={'user': user})
+        if serializer.is_valid():
+            chat = serializer.save()
+            print('success')
+            return Response(
+                {
+                    "success": True,
+                },
+                status=status.HTTP_200_OK,
+            )
+        # 예외처리 필요
+        else:
+            print("fail")
+            return Response(
+                {
+                    "success": False
+                },
+                status=status.HTTP_200_OK,
+            )

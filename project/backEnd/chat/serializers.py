@@ -8,6 +8,7 @@ from django.conf import settings
 class CreateChatSerializer(serializers.ModelSerializer):
     
     class Meta:
+        ordering = ["-pk"]
         model = RolePlayingRoom
         fields = [
             "language",

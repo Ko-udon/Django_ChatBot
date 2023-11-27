@@ -6,14 +6,6 @@ from django.db import models
 
 
 class RolePlayingRoom(models.Model):
-    # class Language(models.TextChoices):
-    #     KOREAN = "ko-KR", "Korean"
-    #     ENGLISH = "en-US", "English"
-    #     JAPANESE = "ja-JP", "Japanese"
-
-    # class Meta:
-    #     ordering = ["-pk"]
-
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default= 1)
 
     language = models.CharField(
