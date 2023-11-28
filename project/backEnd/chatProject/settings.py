@@ -164,7 +164,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email' # 로그인 인증 수단
 ACCOUNT_EMAIL_VERIFICATION = 'none' # email 인증 필수 여부
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # AccessToken 유효 기간 설정
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),  # AccessToken 유효 기간 설정
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # RefreshToken 유효 기간 설정
 }
 

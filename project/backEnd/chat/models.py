@@ -27,7 +27,7 @@ class RolePlayingRoom(models.Model):
 
     chat_history = models.TextField(verbose_name="채팅 기록", blank=True)
 
-    def get_initial_messages(self) -> List[GptMessage]:
+    def get_initial_messages(self):
         gpt_name = "역할놀이채팅봇"
 
         language = self.language
@@ -36,7 +36,7 @@ class RolePlayingRoom(models.Model):
         gpt_role = self.gpt_role
         
         system_message = (
-            f"너의 이름은 {gpt_name}야. "
+            f"너는 {gpt_name}야. "
             f"유저와 대화를 이어나가면 되."
         )
         
@@ -44,14 +44,12 @@ class RolePlayingRoom(models.Model):
             f"대화 언어는 {language}로 대화할거야. "
             f"{language}로만 대화하면 되."
             f"{situation} 상황을 가정하고 각자 역할을 부여해서 대화할거야."
-            f"내 역할은 {my_role} 이야."
+            f"나의 역할은 {my_role} 이야."
             f"너의 역할은 {gpt_role} 이야."
             f"이제 대화를 시작하자."
         )
         
         return [
-            # GptMessage(role="system", content=system_message),
-            # GptMessage(role="user", content=user_message),
             system_message, user_message
         ]
 

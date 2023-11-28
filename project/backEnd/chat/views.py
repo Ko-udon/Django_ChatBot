@@ -150,35 +150,38 @@ class DeleteRolePlayingRoomAPIView(APIView):
 class chatGPT(APIView):
     model = RolePlayingRoom
 
-    def ask_chatbot(message):
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "user", "content": message},
-                ]
-            )
-            answer = response.choices[0].message.content.strip()
-            return answer
-    
-    def post(self, request, pk):
-    
+    def ask_chatbot(message, pk):
         chat = RolePlayingRoom.objects.get(pk=pk)
         chatSetting = chat.get_initial_messages()
+
         response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", 
                     "content": chatSetting[0]},
                     {"role": "user", "content": chatSetting[1]},
+                    {"role": "user", "content": message},
                 ]
         )
+
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-3.5-turbo",
+        #     messages=[
+        #         {"role": "user", "content": message},
+        #     ]
+        # )
+        answer = response.choices[0].message.content.strip()
+        return answer
+    
+    def post(self, request, pk):
+        chat = RolePlayingRoom.objects.get(pk=pk)
 
         message = request.data.get('message')
         chat.chat_history+='<tap>'+'user: '+message+' '
 
-        answer = chatGPT.ask_chatbot(message)
+        answer = chatGPT.ask_chatbot(message, pk)
 
-        serializer = CreateChatSerializer(chat, data=request.data)
+        # serializer = CreateChatSerializer(chat, data=request.data)
 
         # if serializer.is_valid():
         #     chat = serializer.save()
