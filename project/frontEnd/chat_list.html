@@ -117,6 +117,7 @@
                                             <th>채팅봇 역할</th>
                                             <th>-</th>
                                             <th>-</th>
+                                            <th>-</th>
                                         </tr>
                                     </thead>
                                         
@@ -167,25 +168,43 @@
             const chat_list = document.getElementById('chat_list');
             chat_list.innerHTML = ''
             data.chat_list.forEach(item => {
-                // 새로운 div 요소를 생성하고
+                // 새로운 div 요소를 생성
+                
+                var lang = ''
+                switch(item['language']) {
+                    case 'en-US':
+                    lang = '영어';
+                    break;
+                case 'ja-JP':
+                    lang = '일본어';
+                    break;
+                case 'ko-KR':
+                    lang = '한국어';
+                    break;
+                default:
+                    lang = '##';
+                    break;
+                }
                 const tr = document.createElement('tr');
                 tr.innerHTML = 
-                '<td>'+item['language']+'</td>'+
+                '<td>'+lang+'</td>'+
                 '<td>'+item['situation']+'</td>'+
                 '<td>'+item['my_role']+'</td>'+
                 '<td>'+item['gpt_role']+'</td>'+
                 '<td>'+'<a class="enter_btn" href='+"chat_activate.html?id="+item['pk']+'>'+'입장'+'</td>'+
+                '<td>'+'<a class="update_btn" href='+"update_chat.html?id="+item['pk']+'>'+'수정'+'</td>'+
                 '<td>'+'<a class="delete_btn" href="#" pk='+item['pk']+'>'+'삭제'+'</td>'
 
                 chat_list.append(tr);
             });
+
 
             // 채팅방 입장
             const enter_chat = document.getElementsByClassName('enter_btn');
 
             Array.from(enter_chat).forEach(button => {
                 button.addEventListener('click', function() {
-                    const pk = this.getAttribute('pk');  // 게시글의 ID를 가져옵니다.
+                    const pk = this.getAttribute('pk');  // 게시글의 pk값
                     
                     fetch(`http://127.0.0.1:8000/chat/${pk}/`, {
                         method: 'GET',
