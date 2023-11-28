@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'chat',
+    
 
     # 설치한 라이브러리들
     'rest_framework',
@@ -55,6 +56,8 @@ INSTALLED_APPS = [
     # cors 허용
     'corsheaders',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -7,4 +7,5 @@ urlpatterns = [
     path('<int:pk>/', DetailRolePlayingRoomAPIView.as_view()),
     path('<int:pk>/delete/', DeleteRolePlayingRoomAPIView.as_view()),
     path('<int:pk>/update/', UpdateRolePlayingRoomAPIView.as_view()),
+    path('<int:pk>/activate/', chatGPT.as_view()),
 ]

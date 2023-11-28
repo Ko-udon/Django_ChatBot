@@ -1,6 +1,5 @@
-from django.contrib import messages
+# chat 방 관련
 from django.contrib.admin.views.decorators import staff_member_required
-# from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -21,6 +20,19 @@ from chatProject.settings import SECRET_KEY
 from accounts.models import CustomUser as User
 import jwt
 from django.shortcuts import render, get_object_or_404
+
+# chatbot 관련
+import os
+import openai
+
+from dotenv import load_dotenv
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+from django.http import JsonResponse
+
+#########################################################################
+
 
 # 목록조회
 class RolePlayingRoomAPIView(APIView):
@@ -115,15 +127,7 @@ class UpdateRolePlayingRoomAPIView(APIView):
                 },
                 status=status.HTTP_200_OK,
             )
-        # 예외처리 필요
-        else:
-            print("fail")
-            return Response(
-                {
-                    "success": False
-                },
-                status=status.HTTP_200_OK,
-            )
+
 # 삭제
 class DeleteRolePlayingRoomAPIView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -140,3 +144,53 @@ class DeleteRolePlayingRoomAPIView(APIView):
                 },
                 status=status.HTTP_200_OK,
             ) 
+    
+
+# chatGPT
+class chatGPT(APIView):
+    model = RolePlayingRoom
+
+    def ask_chatbot(message):
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "user", "content": message},
+                ]
+            )
+            answer = response.choices[0].message.content.strip()
+            return answer
+    
+    def post(self, request, pk):
+    
+        chat = RolePlayingRoom.objects.get(pk=pk)
+        chatSetting = chat.get_initial_messages()
+        response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", 
+                    "content": chatSetting[0]},
+                    {"role": "user", "content": chatSetting[1]},
+                ]
+        )
+
+        message = request.data.get('message')
+        chat.chat_history+='<tap>'+'user: '+message+' '
+
+        answer = chatGPT.ask_chatbot(message)
+
+        serializer = CreateChatSerializer(chat, data=request.data)
+
+        # if serializer.is_valid():
+        #     chat = serializer.save()
+        #     print('success')
+        chat.chat_history+='<tap>'+'system: '+answer+' '
+        chat.save()
+        return Response(
+            {
+                "answer": answer
+            },
+            status=status.HTTP_200_OK,
+        ) 
+
+
+

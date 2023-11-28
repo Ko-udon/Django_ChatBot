@@ -16,6 +16,7 @@ class CreateChatSerializer(serializers.ModelSerializer):
             "situation",
             "my_role",
             "gpt_role",
+            "chat_history",
         ]
 
     def create(self, validated_data):
@@ -31,5 +32,6 @@ class CreateChatSerializer(serializers.ModelSerializer):
         chat.situation = validated_data.get('situation', chat.situation)
         chat.my_role = validated_data.get('my_role', chat.my_role)
         chat.gpt_role = validated_data.get('gpt_role', chat.gpt_role)
+        chat.chat_history = validated_data.get('chat_history', chat.chat_history)
         chat.save()
         return chat

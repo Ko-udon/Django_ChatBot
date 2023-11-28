@@ -170,8 +170,8 @@
             data.chat_list.forEach(item => {
                 // 새로운 div 요소를 생성
                 
-                var lang = ''
-                switch(item['language']) {
+                var lang = item['language']
+                /*switch(item['language']) {
                     case 'en-US':
                     lang = '영어';
                     break;
@@ -184,7 +184,7 @@
                 default:
                     lang = '##';
                     break;
-                }
+                }*/
                 const tr = document.createElement('tr');
                 tr.innerHTML = 
                 '<td>'+lang+'</td>'+

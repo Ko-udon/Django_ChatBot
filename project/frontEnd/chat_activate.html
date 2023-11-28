@@ -130,9 +130,7 @@
                         </div>
                         <div class="card-body">
                             <ul id="chat-message-list">
-        
-                            
-                                <li class="chat-message">
+                                <!--<li class="chat-message">
                                     <span class="message">Good morning?</span>
                                 </li>
                                 <li class="chat-message me">
@@ -140,10 +138,11 @@
                                 </li>
                                 <li class="chat-message">
                                     <span class="message">Of course, </span>
-                                </li>
+                                </li>-->
         
                             </ul>
                         </div>
+
                         <div class="card-footer">
                             <div class="d-flex gap-2">
                                 <form id="message-form" class="d-flex gap-1 flex-grow-1">
@@ -194,7 +193,34 @@
         if (data){
             console.log('Success:', data);
             console.log('Success:', data.chat_list);
-            document.getElementById('chat_name').append(data.chat_list['situation'])
+            document.getElementById('chat_name').append(data.chat_list['situation']);
+
+            
+            chat_history = data.chat_list['chat_history'].split('<tap>');
+            console.log(chat_history);
+            
+            for (let i = 1; i < chat_history.length; i++) {
+                if (i % 2 != 0){
+                    const li = document.createElement('li');
+                    li.innerHTML = '<li class="chat-message me">'+
+                        '<span class="message">'+chat_history[i].slice(5)+
+                        '</span>'+
+                    '</li>';
+
+                    document.getElementById('chat-message-list').append(li);
+                }
+                else{
+                    const li = document.createElement('li');
+                    li.innerHTML = '<li class="chat-message">'+
+                        '<span class="message">'+chat_history[i].slice(7)+
+                        '</span>'+
+                    '</li>';
+
+                    document.getElementById('chat-message-list').append(li);
+                }
+            }
+
+            
         
         };
     });
