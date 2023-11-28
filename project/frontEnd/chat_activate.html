@@ -38,6 +38,12 @@
             color: #fff;
             text-align: left;
         }
+
+        .loading-icon{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 
 </head>
@@ -146,16 +152,19 @@
                         <div class="card-footer">
                             <div class="d-flex gap-2">
                                 <form id="message-form" class="d-flex gap-1 flex-grow-1">
-                                    <input type="text"
-                                           name="message"
-                                           placeholder="메시지를 입력하세요."
-                                           class="form-control flex-grow-1" />
+                                    <input type="text" id="send_message"
+                                        name="message"
+                                        placeholder="메시지를 입력하세요."
+                                        class="form-control flex-grow-1" />
                                 </form>
                             </div>
+                            
                         </div>
                     </div>
                     <hr>
-                    
+                    <div class="loading-icon" id = "loading-icon">
+                        <img src = "./img/loading.gif" >
+                      </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -178,6 +187,7 @@
 
 </html>
 <script>
+    // 채팅기록 불러오기
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
@@ -223,5 +233,47 @@
             
         
         };
+    });
+
+
+    // GPT에 메세지 전송하기
+    const loadingIcon = document.getElementById("loading-icon");
+    loadingIcon.style.display='none';
+
+    send_message = document.getElementById('message-form');
+    send_message.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        var message = document.getElementById('send_message').value;
+        console.log(message);
+
+        loadingIcon.style.display='flex'
+
+        var data = {
+            'message': message
+        };
+
+        await fetch(`http://127.0.0.1:8000/chat/${id}/activate/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            
+        });
+
+        // 메세지 전송 후 입력 칸 초기화
+        document.getElementById('send_message').value='';
+        loadingIcon.style.display='none'
     });
 </script>
