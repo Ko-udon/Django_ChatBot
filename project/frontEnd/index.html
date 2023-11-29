@@ -76,11 +76,11 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown no-arrow" id="logout">
+                        <!--<li class="nav-item dropdown no-arrow" id="logout">
                             <a class="nav-link dropdown-toggle-logout" >
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그아웃</span>
                             </a>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown no-arrow" id="user_profile">
                             <a class="nav-link dropdown-toggle" >
                                 <img class="img-profile rounded-circle"
@@ -115,6 +115,7 @@
 </html>
 <script>
     // 사용자 로그인에 따라 UI 활성화/비활성화
+    /*
     user_profile = document.getElementById('user_profile');
     user_profile.style.display = 'none';
 
@@ -145,11 +146,11 @@
     .catch((error) => {
         user_login.style.display = 'block';
         user_signup.style.display = 'block';
-    });
+    });*/
 
     
     //로그아웃
-    /*logout = document.getElementById("logout")
+    logout = document.getElementById("logout")
     logout.addEventListener('click', function() {
         fetch(`http://127.0.0.1:8000/account/auth/`, {
             method: 'DELETE',
@@ -161,7 +162,7 @@
             console.error('Error:', error);
         });
         
-    }); */
+    }); 
 
 
 
