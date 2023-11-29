@@ -6,9 +6,6 @@ from django.db import models
 
 from typing import TypedDict, Literal, List
 
-class GptMessage(TypedDict):
-    role: Literal["system", "user", "assistant"]
-    content: str
 
 class RolePlayingRoom(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default= 1)

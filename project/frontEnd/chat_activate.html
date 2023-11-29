@@ -73,11 +73,11 @@
                     <span>내 채팅방</span></a>
             </li>
 
-            <li class="nav-item active">
+            <!--<li class="nav-item active">
                 <a class="nav-link" href="PlayGrounds.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>PlayGrounds</span></a>
-            </li>
+            </li>-->
 
             <li class="nav-item active">
                 <a class="nav-link" href="create_chat.html">
@@ -111,7 +111,7 @@
                         <li class="nav-item dropdown no-arrow">
                             
                             <a class="nav-link dropdown-toggle" >
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">사용자</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -136,15 +136,6 @@
                         </div>
                         <div class="card-body">
                             <ul id="chat-message-list">
-                                <!--<li class="chat-message">
-                                    <span class="message">Good morning?</span>
-                                </li>
-                                <li class="chat-message me">
-                                    <span class="message">Yes.</span>
-                                </li>
-                                <li class="chat-message">
-                                    <span class="message">Of course, </span>
-                                </li>-->
         
                             </ul>
                         </div>
@@ -164,7 +155,7 @@
                     <hr>
                     <div class="loading-icon" id = "loading-icon">
                         <img src = "./img/loading.gif" >
-                      </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -177,7 +168,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Ko</span>
+                        <span>Copyright &copy; </span>
                     </div>
                 </div>
             </footer>
@@ -248,6 +239,7 @@
         console.log(message);
 
         loadingIcon.style.display='flex'
+        document.getElementById('send_message').value='';
 
         var data = {
             'message': message

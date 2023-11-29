@@ -4,15 +4,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import *
-
-
-# rendering
-from .renderers import UserJSONRenderer
-
-# test
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 # login
@@ -23,13 +14,7 @@ from django.shortcuts import render, get_object_or_404
 from chatProject.settings import SECRET_KEY
 from .models import CustomUser as User
 
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def mypage(request):
-    content = {'message': '반갑습니다,' + str(request.user.email) + '님!'}
-    
-    return Response(content)
+from django.http import HttpResponse
 
 # 회원가입
 class SignUpView(APIView):
@@ -74,26 +59,7 @@ class UserAuthAPIView(APIView):
             user = get_object_or_404(User, pk=pk)
             serializer = UserSerializer(instance=user)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        
-        except(jwt.exceptions.ExpiredSignatureError):
-            # 토큰 만료 시 토큰 갱신
-            data = {'refresh': request.COOKIES.get('refresh', None)}
-            serializer = TokenRefreshSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                access = serializer.data.get('access', None)
-                refresh = serializer.data.get('refresh', None)
-                payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-                pk = payload.get('user_id')
-                user = get_object_or_404(User, pk=pk)
-                serializer = UserSerializer(instance=user)
-                res = Response(serializer.data, status=status.HTTP_200_OK)
-                res.set_cookie('access', access)
-                res.set_cookie('refresh', refresh)
-                return res
-            raise jwt.exceptions.InvalidTokenError
-
-        except(jwt.exceptions.InvalidTokenError):
-            # 사용 불가능한 토큰일 때
+        except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
 
@@ -129,29 +95,17 @@ class UserAuthAPIView(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
-
+    
     # 로그아웃
     def delete(self, request):
         # 쿠키에 저장된 토큰 삭제 => 로그아웃 처리
+
         response = Response({
             "message": "Logout success"
-            }, status=status.HTTP_202_ACCEPTED)
-        response.delete_cookie("access")
-        response.delete_cookie("refresh")
+            }, 
+            status=status.HTTP_202_ACCEPTED
+        )
+
+        response.set_cookie("access", '', httponly=True)
+        response.set_cookie("refresh", '', httponly=True)
         return response
-        
-    
-    
-
-# # test
-# # views.py
-# from rest_framework import viewsets
-# from rest_framework.permissions import IsAuthenticated
-# from .serializers import *
-
-# # jwt 토근 인증 확인용 뷰셋
-# # Header - Authorization : Bearer <발급받은토큰>
-# class UserViewSet(viewsets.ModelViewSet):
-#     permission_classes = [IsAuthenticated]
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer

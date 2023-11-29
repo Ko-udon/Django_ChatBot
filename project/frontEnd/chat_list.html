@@ -41,11 +41,11 @@
                     <span>내 채팅방</span></a>
             </li>
 
-            <li class="nav-item active">
+            <!--<li class="nav-item active">
                 <a class="nav-link" href="PlayGrounds.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>PlayGrounds</span></a>
-            </li>
+            </li>-->
 
             <li class="nav-item active">
                 <a class="nav-link" href="create_chat.html">
@@ -79,7 +79,7 @@
                         <li class="nav-item dropdown no-arrow">
                             
                             <a class="nav-link dropdown-toggle" >
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">사용자</span>
+                            
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -142,7 +142,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Ko</span>
+                        <span>Copyright &copy; </span>
                     </div>
                 </div>
             </footer>
@@ -171,20 +171,6 @@
                 // 새로운 div 요소를 생성
                 
                 var lang = item['language']
-                /*switch(item['language']) {
-                    case 'en-US':
-                    lang = '영어';
-                    break;
-                case 'ja-JP':
-                    lang = '일본어';
-                    break;
-                case 'ko-KR':
-                    lang = '한국어';
-                    break;
-                default:
-                    lang = '##';
-                    break;
-                }*/
                 const tr = document.createElement('tr');
                 tr.innerHTML = 
                 '<td>'+lang+'</td>'+

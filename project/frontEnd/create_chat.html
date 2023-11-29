@@ -41,11 +41,11 @@
                     <span>내 채팅방</span></a>
             </li>
 
-            <li class="nav-item active">
+            <!--<li class="nav-item active">
                 <a class="nav-link" href="PlayGrounds.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>PlayGrounds</span></a>
-            </li>
+            </li>-->
 
             <li class="nav-item active">
                 <a class="nav-link" href="create_chat.html">
@@ -79,7 +79,6 @@
                         <li class="nav-item dropdown no-arrow">
                             
                             <a class="nav-link dropdown-toggle" >
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">사용자</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -89,6 +88,9 @@
 
                 <!-- Begin Page Content -->
                 <!-- Page Heading -->
+                <div class="container-fluid">
+                <div class="container-fluid">
+
                 <h1 class="h3 mb-2 text-gray-800">채팅방 만들기</h1>
                 <p class="mb-4">언어와 상황을 정의하여 챗봇과 대화를 시작하세요!
                 </p>
@@ -150,16 +152,18 @@
                                 </div>
 
                             </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div></div></div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Ko-udon</span>
+                        <span>Copyright &copy;</span>
                     </div>
                 </div>
             </footer>
@@ -187,7 +191,6 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                //'Authorization': 'Bearer'+ access_token
             },
             credentials: 'include',
             body: JSON.stringify(data),
