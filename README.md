@@ -176,7 +176,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
             </td>
         </tr>
         <tr>
-            <td>채팅방 수정</td>
+            <td>채팅방 생성</td>
             <td>채팅방 목록</td>
         </tr>
         <tr>
