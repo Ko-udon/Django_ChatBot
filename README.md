@@ -27,30 +27,41 @@
 ### 1.3 팀 구성
 <table>
 	<tr>
-		<th>고동우</th>
-	</tr>
- 	<tr>
-		<td><img src="my.jpg" width="100%"></td>
+		<th>고동우</th><th>서비스 설계 및 개발</th>
 	</tr>
 </table>
 
 ## 2. 개발 환경 및 배포 URL
 ### 2.1 개발 환경
 - Web Framework
-  - Django 3.x (Python 3.8)
+  - Django 4.0.3 (Python 3.11.6)
 - 서비스 배포 환경
-  - Amazon Lightsail
-...중략...
+  - BackEnd: Amazon Lightsail 
+  - FrontEnd: Amazon Lightsail 
 ### 2.2 배포 URL
--
+- http://15.164.74.72/
 
 ### 2.3 URL 구조
-- main
+- accounts
 
-| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
-|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
-| main      | '/'                                        | home              | main/home.html                        | 홈화면          |
-| main      | '/about/'                                  | about             | main/about.html                       | 소개화면               |
+| App       | URL                                        | Views Function    | HTML File Name      | 요청            | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------|----------------|----------------|
+| accounts      | 'account/signup/'                              | signUpView        | register.html       |Post            | 회원가입       |
+| accounts      | 'account/auth/'                                | UserAuthAPIView   | login.html          |Post            | 로그인         |
+| accounts      | 'account/auth/'                                | UserAuthAPIView   | -          |Get             | 유저확인       |
+| accounts      | 'account/auth/'                                | UserAuthAPIView   | -          |Delete          | 로그아웃       |
+
+- chat
+  
+| App       | URL                                        | Views Function    | HTML File Name      | 요청            | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------|----------------|----------------|
+| chat      | 'chat/'                                | RolePlayingRoomAPIView         | chat_list.html  | Get     | 채팅방 조회    |
+| chat      | 'chat/create/'                         | CreateRolePlayingRoomAPIView   | create_chat.html | Post   | 채팅방 생성    |
+| chat      | 'chat/<int:pk>/'                       | DetailRolePlayingRoomAPIView   | chat_activate.html   | Get | 채팅방 입장    |
+| chat      | 'chat/<int:pk>/activate/'              | chatGPT                        | chat_activate.html  | Post | GPT 메세지 요청 |
+| chat      | 'chat/<int:pk>/update/'                | UpdateRolePlayingRoomAPIView   | update_chat.html  | Post   | 채팅방 수정    |
+| chat      | 'chat/<int:pk>/delete/'                | DeleteRolePlayingRoomAPIView   | chat_list.html  | Delete   | 채팅방 삭제    |
+
 
 
 
