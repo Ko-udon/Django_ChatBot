@@ -34,8 +34,7 @@
 
 ## 2. 개발 환경 및 배포 URL
 ### 2.1 개발 환경
-- Web Framework
-  - Django 4.0.3 (Python 3.11.6)
+- Django 4.0.3 (Python 3.11.6)
 - 서비스 배포 환경
   - BackEnd: Amazon Lightsail 
   - FrontEnd: Amazon Lightsail 
