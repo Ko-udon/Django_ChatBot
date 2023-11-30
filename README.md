@@ -277,14 +277,83 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 </table>
 
 
-## 10. 에러와 에러 해결
+## 10. 문제 및 에러 해결
 
 1. JS array객체인줄 알았는데 아니여서 값을 조회 못했던 점
-- Array.from(data) 해결, console.log 출력
-2. getElementId가 null 값이 나오는 점 (페이지 로드시, 해당 태그가 없어서)
-- 스크립트에 호출하여 해당 태그가 생성되고 난 뒤에 함수를 생성하여 해결
-3. 데이터 조회 및 전달 방식
-- url에 id값을 넣어 다음 페이지로 이동하고, 해당 페이지에서 요청하여 해결'
-4. setting에 필요한 .env파일 
+- 채팅방 데이터 조회 시 데이터 응답 형태가 일반 배열(array)라고 생각
+- 관련 에러를 찾아보니 유사 배열 객체로 반복 가능한 객체를 복사해 새로운 Array 객체로 반환하여 해결
+![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/da8fdbc5-535f-4a14-b465-0f7fdad96ae2)
+
+<table>
+    <tbody>
+        <tr>
+            <td>기존 코드</td>
+            <td>수정 후</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+            </td>
+            <td>
+                <img src="readme_resource/monitor/gif-chat_activate.gif" width="100%">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+2. 채팅 데이터 저장 방식
+- 채팅방에 메세지를 어떤식으로 저장할지 고민이 많았다
+- 좋은 방법이 생각나지 않아 메세지를 저장시, <tap>(user or system)텍스트를 앞에 붙여서 전달하여 데이터를 split('<tap>')으로 나눠서 구분하여 저장
+
+<table>
+    <tbody>
+        <tr>
+            <td>저장 방식</td>
+            <td>메세지 전달</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+            </td>
+            <td>
+                <img src="readme_resource/monitor/gif-chat_activate.gif" width="100%">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+3.채팅방 조회 및 전달 
+- 채팅방 입장을 위해 채팅방의 id값이 필요
+<table>
+    <tbody>
+        <tr>
+            <td>저장 방식</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+```
+'<td>'+'<a class="enter_btn" href='+"chat_activate.html?id="+item['pk']+'>'+'입장'+'</td>'
+```
+
+- 위 스크립트에서 `chat_activate.html?id="+item['pk']`으로 pk값을 url로 같이 전달
+  
+url에 id값을 넣어 다음 페이지로 이동하고, 해당 페이지에서 요청하여 해결
+
+
+
+4.API 키값을 포함한 .env파일
+- 깃허브에 키값을 포함한 .env파일같은 경우 올릴수 없다
+- lighsail linux OS에서 git 프로젝트를 clone
+- .env 파일은 구글 드라이브에 공유 링크를 생성 후, 아래 코드로 해결
+  
+```
+wget --load-cookies ~/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies ~/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=[아이디]' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=[아이디]" -O [파일 이름] && rm -rf ~/cookies.txt
+```
 
 
