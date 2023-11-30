@@ -10,6 +10,7 @@
 ### 1.1 목표
 - Django DRF를 이용하여 서버를 구현하기
 - 마이크로서비스 아키텍처로 개발하기
+- 로그인/로그아웃을 JWT토큰을 이용해 처리하기
 - OpenAI의 GPT-3.5 모델을 이용하여 서버에서 응답을 처리해서 전달하기
 - [ChatGPT영어 상황극 채팅 서비스 만들기 - 이진석 강사님](https://www.inflearn.com/course/chatgpt-%EC%98%81%EC%96%B4-%EC%B1%84%ED%8C%85%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%A5%EA%B3%A0?inst=4f76c676&utm_source=instructor&utm_medium=referral&utm_campaign=inflearn_%ED%8A%B8%EB%9E%98%ED%94%BD_promotion-link)- 유사한 서비스로 구현
 
@@ -66,8 +67,9 @@
 
 
 ## 3. 요구사항 명세와 기능 명세
-- https://www.mindmeister.com/ 사용하기
-- 요구사항 이미지, 마인드맵
+
+![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/07e4cc4e-691b-4e9d-a4d5-0f9de81060d5)
+
 
 
 ## 4. 프로젝트 구조와 개발 일정
