@@ -1,4 +1,4 @@
-# Django_ChatBot
+# CHAT PLAYING
 
 
 오르미 미니프로젝트2 - chatGPT활용 채팅 서비스 
