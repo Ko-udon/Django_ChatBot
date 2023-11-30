@@ -1,17 +1,28 @@
 # Django_ChatBot
 
 
-오르미 미니프로젝트2 - chatGPT를 활용한 채팅 서비스 
+오르미 미니프로젝트2 - chatGPT활용 채팅 서비스 
 
 
 
 ## 1. 목표와 기능
 
 ### 1.1 목표
+- Django DRF를 이용하여 서버를 구현하기
+- 마이크로서비스 아키텍처로 개발하기
+- OpenAI의 GPT-3.5 모델을 이용하여 서버에서 응답을 처리해서 전달하기
+- [ChatGPT영어 상황극 채팅 서비스 만들기 - 이진석 강사님](https://www.inflearn.com/course/chatgpt-%EC%98%81%EC%96%B4-%EC%B1%84%ED%8C%85%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%A5%EA%B3%A0?inst=4f76c676&utm_source=instructor&utm_medium=referral&utm_campaign=inflearn_%ED%8A%B8%EB%9E%98%ED%94%BD_promotion-link)- 유사한 서비스로 구현
 
 
 ### 1.2 기능
-
+- 사이트 회원가입/로그인/로그아웃 기능
+- 채팅방 생성하기
+	- 채팅방은 사용언어(한국어, 영어, 일본어), 상황, 역할을 정해서 생성
+ 	- 채팅방은 수정 가능
+  	- 생성한 채팅방은 삭제 가능 	 
+- 챗봇과 채팅하기
+	- 생성한 채팅방은 로그인한 유저가 본인의 채팅방만 조회 가능
+ 	- 채팅방에 입장 후, 텍스트 입력 시 GPT의 답변이 전달되고 채팅방에 메세지로 표기 	
 
 ### 1.3 팀 구성
 <table>
