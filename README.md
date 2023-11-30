@@ -16,7 +16,7 @@
 
 
 ### 1.2 기능
-- 사이트 회원가입/로그인/~~로그아웃~~(로컬) 기능
+- 사이트 회원가입/로그인/로그아웃
 - 채팅방 생성하기
 	- 채팅방은 사용언어(한국어, 영어, 일본어), 상황, 역할을 정해서 생성
  	- 채팅방은 수정 가능
@@ -176,7 +176,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
             </td>
         </tr>
         <tr>
-            <td>채팅방 생성</td>
+            <td>채팅방 수정</td>
             <td>채팅방 목록</td>
         </tr>
         <tr>
@@ -358,4 +358,3 @@ wget --load-cookies ~/cookies.txt "https://docs.google.com/uc?export=download&co
 
 ___
 
-5. 로그아웃시 사용자 토큰이 삭제되지 않음(아직 미해결)
