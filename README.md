@@ -209,7 +209,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-		<img src="readme_resource/gif-save_chat.gif" >
+		<img src="readme_resource/gif-main.gif" >
             </td>
             <td>
                 <img src="readme_resource/monitor/gif-login.gif" >
