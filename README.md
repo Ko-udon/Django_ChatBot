@@ -169,10 +169,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-	<img src="" width="100%">
+		<img src="readme_resource/wf/wf-main.png" width="70%">
             </td>
             <td>
-                <img src="" width="100%">
+                <img src="readme_resource/wf/wf-login.png" width="70%">
             </td>
         </tr>
         <tr>
@@ -181,10 +181,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/wf/wf-chat_create.png" width="70%">
             </td>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/wf/wf-chat_list.png" width="70%">
             </td>
         </tr>
         <tr>
@@ -192,7 +192,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/wf/wf-chat_activate" width="70%">
             </td>
         </tr>
     </tbody>
@@ -209,10 +209,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-		<img src="ui1.png" width="100%">
+		<img src="readme_resource/a/a-main.png" width="70%">
             </td>
             <td>
-                <img src="ui2.png" width="100%">
+                <img src="readme_resource/monitor/gif-login.gif" width="70%">
             </td>
         </tr>
         <tr>
@@ -221,10 +221,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/monitor/gif-create_chat.gif" width="70%">
             </td>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/monitor/gif-chat_list.gif" width="70%">
             </td>
         </tr>
         <tr>
@@ -233,10 +233,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/monitor/gif-delete_chat.gif" width="70%">
             </td>
             <td>
-                <img src="ui3.png" width="100%">
+                <img src="readme_resource/monitor/gif-chat_activate.gif" width="70%">
             </td>
         </tr>
     </tbody>
@@ -259,15 +259,8 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 <table>
     <tbody>
         <tr>
-            <td>채팅 </td>
-            <td>로그인</td>
-        </tr>
-        <tr>
             <td>
-		<img src="ui1.png" width="100%">
-            </td>
-            <td>
-                <img src="ui2.png" width="100%">
+		<img src="readme_resource/gif-save_chat.mp4" width="100%">
             </td>
         </tr>
     </tbody>
