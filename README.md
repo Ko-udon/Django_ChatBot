@@ -350,7 +350,7 @@ url에 id값을 넣어 다음 페이지로 이동하고, 해당 페이지에서 
 
 4.API 키값을 포함한 .env파일
 - 깃허브에 키값을 포함한 .env파일같은 경우 올릴수 없다
-- lighsail linux OS에서 git 프로젝트를 clone
+- lightsail linux OS에서 git 프로젝트를 clone
 - .env 파일은 구글 드라이브에 공유 링크를 생성 후, 아래 코드로 해결
   
 ```
