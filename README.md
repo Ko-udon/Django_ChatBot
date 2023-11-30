@@ -169,10 +169,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-		<img src="readme_resource/wf/wf-main.png" width="70%">
+		<img src="readme_resource/wf/wf-main.png" width="100%">
             </td>
             <td>
-                <img src="readme_resource/wf/wf-login.png" width="70%">
+                <img src="readme_resource/wf/wf-login.png" width="100%">
             </td>
         </tr>
         <tr>
@@ -181,10 +181,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/wf/wf-chat_create.png" width="70%">
+                <img src="readme_resource/wf/wf-chat_create.png" width="100%">
             </td>
             <td>
-                <img src="readme_resource/wf/wf-chat_list.png" width="70%">
+                <img src="readme_resource/wf/wf-chat_list.png" width="100%">
             </td>
         </tr>
         <tr>
@@ -192,7 +192,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/wf/wf-chat_activate" width="70%">
+                <img src="readme_resource/wf/wf-chat_activate.png" width="100%">
             </td>
         </tr>
     </tbody>
@@ -209,10 +209,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-		<img src="readme_resource/a/a-main.png" width="70%">
+		<img src="readme_resource/a/a-main.png" >
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-login.gif" width="70%">
+                <img src="readme_resource/monitor/gif-login.gif" >
             </td>
         </tr>
         <tr>
