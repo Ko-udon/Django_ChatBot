@@ -248,7 +248,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
 
 ## 8. Architecture
-![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/09207636-f9ac-4560-a0e2-27cb1981f76e)
+![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/eb7a73be-5b7e-4ab9-8bc3-94cef475de07)
 
 
 
