@@ -16,7 +16,7 @@
 
 
 ### 1.2 기능
-- 사이트 회원가입/로그인/로그아웃 기능
+- 사이트 회원가입/로그인/~~로그아웃~~(로컬) 기능
 - 채팅방 생성하기
 	- 채팅방은 사용언어(한국어, 영어, 일본어), 상황, 역할을 정해서 생성
  	- 채팅방은 수정 가능
@@ -209,7 +209,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-		<img src="readme_resource/a/a-main.png" >
+		<img src="readme_resource/gif-save_chat.gif" >
             </td>
             <td>
                 <img src="readme_resource/monitor/gif-login.gif" >
@@ -221,10 +221,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/monitor/gif-create_chat.gif" width="70%">
+                <img src="readme_resource/monitor/gif-create_chat.gif" width="100%">
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-chat_list.gif" width="70%">
+                <img src="readme_resource/monitor/gif-chat_list.gif" width="100%">
             </td>
         </tr>
         <tr>
@@ -233,10 +233,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/monitor/gif-delete_chat.gif" width="70%">
+                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-chat_activate.gif" width="70%">
+                <img src="readme_resource/monitor/gif-chat_activate.gif" width="100%">
             </td>
         </tr>
     </tbody>
@@ -254,13 +254,23 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
 ## 9. 메인 기능
 1. 회원가입 및 로그인
+   - 회원가입 요청 -> 사용자 정보 등록
+   - 로그인 -> JWT 토큰(access token)을 웹 페이지 Cookie에 저장
+   - 사용자 정보 조회 -> cookie에 access token으로 접속한 사용자 정보 조회
 2. 채팅방 생성/조회/수정/삭제
+   - 언어, 상황, 역할을 지정하여 채팅방 생성 -> 챗봇 기본 설정으로 입력됨
+   - 토큰을 통해 사용자 정보를 확인하여 본인이 생성한 채팅방만 조회
+   - 채팅방 수정 가능
+   - 채팅방 삭제 가능
 3. 채팅 / 채팅 기록 저장
+   - 챗봇에 메세지 전송 -> 서버에서 해당 채팅방의 설정에 맞춰 chatGPT에 메세지 전송 -> 응답온 메세지를 프론트에 전달 -> 프론트에서 응답 처리
+   - 해당 채팅방에서 대화했던 내용은 저장하여 페이지를 벗어나고 다시 접속해도 유지됨
+
 <table>
     <tbody>
         <tr>
             <td>
-		<img src="readme_resource/gif-save_chat.mp4" width="100%">
+		<img src="readme_resource/gif-save_chat.gif" width="100%">
             </td>
         </tr>
     </tbody>
