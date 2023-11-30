@@ -216,8 +216,8 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
             </td>
         </tr>
         <tr>
-            <td>회원가입</td>
-            <td>정보수정</td>
+            <td>채팅방 생성</td>
+            <td>채팅방 조회</td>
         </tr>
         <tr>
             <td>
@@ -228,32 +228,8 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
             </td>
         </tr>
         <tr>
-            <td>검색</td>
-            <td>번역</td>
-        </tr>
-        <tr>
-            <td>
-                <img src="ui3.png" width="100%">
-            </td>
-            <td>
-                <img src="ui3.png" width="100%">
-            </td>
-        </tr>
-        <tr>
-            <td>선택삭제</td>
-            <td>글쓰기</td>
-        </tr>
-        <tr>
-            <td>
-	        <img src="ui3.png" width="100%">
-            </td>
-            <td>
-                <img src="ui3.png" width="100%">
-            </td>
-        </tr>
-        <tr>
-            <td>글 상세보기</td>
-            <td>댓글</td>
+            <td>채팅방 삭제</td>
+            <td>채팅 활성화</td>
         </tr>
         <tr>
             <td>
@@ -277,7 +253,25 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
 
 ## 9. 메인 기능
-
+1. 회원가입 및 로그인
+2. 채팅방 생성/조회/수정/삭제
+3. 채팅 / 채팅 기록 저장
+<table>
+    <tbody>
+        <tr>
+            <td>채팅 </td>
+            <td>로그인</td>
+        </tr>
+        <tr>
+            <td>
+		<img src="ui1.png" width="100%">
+            </td>
+            <td>
+                <img src="ui2.png" width="100%">
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 ## 10. 에러와 에러 해결
