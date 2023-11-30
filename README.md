@@ -292,10 +292,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+                <img src="readme_resource/ts/before_1.png" width="100%">
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-chat_activate.gif" width="100%">
+                <img src="readme_resource/ts/sol_1.png" width="100%">
             </td>
         </tr>
     </tbody>
@@ -313,10 +313,10 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+                <img src="readme_resource/ts/before_2.png" width="100%">
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-chat_activate.gif" width="100%">
+                <img src="readme_resource/ts/sol_2.png" width="100%">
             </td>
         </tr>
     </tbody>
@@ -327,11 +327,11 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 <table>
     <tbody>
         <tr>
-            <td>저장 방식</td>
+            <td>코드</td>
         </tr>
         <tr>
             <td>
-                <img src="readme_resource/monitor/gif-delete_chat.gif" width="100%">
+                <img src="readme_resource/ts/before_3.png" width="100%">
             </td>
         </tr>
     </tbody>
@@ -356,4 +356,6 @@ url에 id값을 넣어 다음 페이지로 이동하고, 해당 페이지에서 
 wget --load-cookies ~/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies ~/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=[아이디]' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=[아이디]" -O [파일 이름] && rm -rf ~/cookies.txt
 ```
 
+___
 
+5. 로그아웃시 사용자 토큰이 삭제되지 않음(아직 미해결)
