@@ -28,7 +28,7 @@
 ### 1.3 팀 구성
 <table>
 	<tr>
-		<th>고동우</th><th>서비스 설계 및 개발</th>
+		<th>고동우</th>
 	</tr>
 </table>
 
@@ -74,7 +74,56 @@
 
 ## 4. 프로젝트 구조와 개발 일정
 ### 4.1 프로젝트 구조
-
+```
+📦project
+ ┣ 📂backEnd
+ ┃ ┣ 📂accounts
+ ┃ ┃ ┣ 📂migrations
+ ┃ ┃ ┣ 📜admin.py
+ ┃ ┃ ┣ 📜apps.py
+ ┃ ┃ ┣ 📜managers.py
+ ┃ ┃ ┣ 📜models.py
+ ┃ ┃ ┣ 📜serializers.py
+ ┃ ┃ ┣ 📜tests.py
+ ┃ ┃ ┣ 📜urls.py
+ ┃ ┃ ┣ 📜views.py
+ ┃ ┃ ┗ 📜__init__.py
+ ┃ ┣ 📂chat
+ ┃ ┃ ┣ 📂migrations
+ ┃ ┃ ┣ 📜admin.py
+ ┃ ┃ ┣ 📜apps.py
+ ┃ ┃ ┣ 📜forms.py
+ ┃ ┃ ┣ 📜models.py
+ ┃ ┃ ┣ 📜serializers.py
+ ┃ ┃ ┣ 📜tests.py
+ ┃ ┃ ┣ 📜urls.py
+ ┃ ┃ ┣ 📜views.py
+ ┃ ┃ ┗ 📜__init__.py
+ ┃ ┣ 📂chatProject
+ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┣ 📜asgi.py
+ ┃ ┃ ┣ 📜settings.py
+ ┃ ┃ ┣ 📜urls.py
+ ┃ ┃ ┣ 📜wsgi.py
+ ┃ ┃ ┗ 📜__init__.py
+ ┃ ┣ 📂venv
+ ┃ ┣ 📜.env
+ ┃ ┣ 📜db.sqlite3
+ ┃ ┣ 📜manage.py
+ ┃ ┗ 📜requirements.txt
+ ┗ 📂frontEnd
+ ┃ ┣ 📂css
+ ┃ ┣ 📂img
+ ┃ ┣ 📂js
+ ┃ ┣ 📜chat_activate.html
+ ┃ ┣ 📜chat_list.html
+ ┃ ┣ 📜create_chat.html
+ ┃ ┣ 📜index.html
+ ┃ ┣ 📜login.html
+ ┃ ┣ 📜PlayGrounds.html
+ ┃ ┣ 📜register.html
+ ┃ ┗ 📜update_chat.html
+```
 
 ### 4.1 개발 일정(WBS)
 
@@ -94,7 +143,9 @@ gantt
     section BE
 	JWT토큰 테스트 :2023-11-22, 1d
 	회원가입/로그인/로그아웃 :2023-11-22, 2d
-	채팅방 생성/수정/삭제 :2023-11-24, 4d
+	채팅방 생성 :2023-11-24, 1d
+	채팅방 삭제 :2023-11-26, 1d
+	채팅방 수정 :2023-11-25, 2d
 	gpt와 채팅 :2023-11-28, 2d
 	FE 연결 및 배포 :2023-11-29, 1d
     section 발표자료 제작
@@ -109,6 +160,43 @@ gantt
 ### 6.1 와이어프레임
 
 https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
+
+<table>
+    <tbody>
+        <tr>
+            <td>메인</td>
+            <td>로그인</td>
+        </tr>
+        <tr>
+            <td>
+	<img src="" width="100%">
+            </td>
+            <td>
+                <img src="" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td>채팅방 생성</td>
+            <td>채팅방 목록</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="ui3.png" width="100%">
+            </td>
+            <td>
+                <img src="ui3.png" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td>채팅 활성화</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="ui3.png" width="100%">
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ### 6.2 화면 설계
 - 화면은 gif파일로 업로드해주세요.
@@ -180,12 +268,26 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
 
 ## 7. 데이터베이스 모델링(ERD)
+![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/c72096d8-5981-4698-b1bd-ffc14991dc43)
 
 
 ## 8. Architecture
+![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/6b59183b-1723-4a68-8d14-c572fdc60286)
+
 
 
 ## 9. 메인 기능
 
 
+
 ## 10. 에러와 에러 해결
+
+1. JS array객체인줄 알았는데 아니여서 값을 조회 못했던 점
+- Array.from(data) 해결, console.log 출력
+2. getElementId가 null 값이 나오는 점 (페이지 로드시, 해당 태그가 없어서)
+- 스크립트에 호출하여 해당 태그가 생성되고 난 뒤에 함수를 생성하여 해결
+3. 데이터 조회 및 전달 방식
+- url에 id값을 넣어 다음 페이지로 이동하고, 해당 페이지에서 요청하여 해결'
+4. setting에 필요한 .env파일 
+
+
