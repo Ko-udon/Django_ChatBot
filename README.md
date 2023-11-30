@@ -305,7 +305,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
 2. 채팅 데이터 저장 방식
 - 채팅방에 메세지를 어떤식으로 저장할지 고민이 많았다
-- 좋은 방법이 생각나지 않아 메세지를 저장시, <tap>(user or system)텍스트를 앞에 붙여서 전달하여 데이터를 split('<tap>')으로 나눠서 구분하여 저장
+- 좋은 방법이 생각나지 않아 메세지를 저장시, `<tap>`(user or system)텍스트를 앞에 붙여서 전달하여 데이터를 split(`<tap>`)으로 나눠서 구분하여 저장
 
 <table>
     <tbody>
