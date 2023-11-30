@@ -217,14 +217,14 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
         </tr>
         <tr>
             <td>채팅방 생성</td>
-            <td>채팅방 조회</td>
+            <td>채팅방 수정</td>
         </tr>
         <tr>
             <td>
                 <img src="readme_resource/monitor/gif-create_chat.gif" width="100%">
             </td>
             <td>
-                <img src="readme_resource/monitor/gif-chat_list.gif" width="100%">
+                <img src="readme_resource/monitor/gif-update_chat.gif" width="100%">
             </td>
         </tr>
         <tr>
