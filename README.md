@@ -34,10 +34,15 @@
 
 ## 2. 개발 환경 및 배포 URL
 ### 2.1 개발 환경
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
+<br>
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 - Django 4.0.3 (Python 3.11.6)
 - 서비스 배포 환경
+ <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> 
   - BackEnd: Amazon Lightsail 
-  - FrontEnd: Amazon Lightsail 
+  - FrontEnd: Amazon Lightsail
+
 ### 2.2 배포 URL
 - http://15.164.74.72/
 
