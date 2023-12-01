@@ -25,12 +25,6 @@
 	- 생성한 채팅방은 로그인한 유저가 본인의 채팅방만 조회 가능
  	- 채팅방에 입장 후, 텍스트 입력 시 GPT의 답변이 전달되고 채팅방에 메세지로 표기 	
 
-### 1.3 팀 구성
-<table>
-	<tr>
-		<th>고동우</th>
-	</tr>
-</table>
 
 ## 2. 개발 환경 및 배포 URL
 ### 2.1 개발 환경
@@ -39,8 +33,9 @@
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 - Django 4.0.3 (Python 3.11.6)
 - 서비스 배포 환경
- <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> 
-  - BackEnd: Amazon Lightsail 
+ <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+
+  - BackEnd: Amazon Lightsail
   - FrontEnd: Amazon Lightsail
 
 ### 2.2 배포 URL
@@ -156,12 +151,10 @@ gantt
 
 ```
 
-## 5. 역할 분담
-- FE/BE : 고동우
 
-## 6. 와이어프레임 / UI / BM
+## 5. 와이어프레임 / UI / BM
 
-### 6.1 와이어프레임
+### 5.1 와이어프레임
 
 https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 
@@ -202,7 +195,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
     </tbody>
 </table>
 
-### 6.2 화면 설계
+### 5.2 화면 설계
 - 화면은 gif파일로 업로드해주세요.
  
 <table>
@@ -247,18 +240,18 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 </table>
 
 
-## 7. 데이터베이스 모델링(ERD)
+## 6. 데이터베이스 모델링(ERD)
 ![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/c72096d8-5981-4698-b1bd-ffc14991dc43)
 
 
-## 8. Architecture
+## 7. Architecture
 ![image](https://github.com/Ko-udon/Django_ChatBot/assets/79897135/ac46a31b-0ec8-4759-a5b2-16d02354531a)
 
 
 
 
 
-## 9. 메인 기능
+## 8. 메인 기능
 1. 회원가입 및 로그인
    - 회원가입 요청 -> 사용자 정보 등록
    - 로그인 -> JWT 토큰(access token)을 웹 페이지 Cookie에 저장
@@ -283,7 +276,7 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 </table>
 
 
-## 10. 문제 및 에러 해결
+## 9. 문제 및 에러 해결
 
 1. JS array객체인줄 알았는데 아니여서 값을 조회 못했던 점
 - 채팅방 데이터 조회 시 데이터 응답 형태가 일반 배열(array)라고 생각
