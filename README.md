@@ -196,7 +196,6 @@ https://ovenapp.io/view/qLV1Sb2auwmPikx0rBvP7I9le9V22ByD/
 </table>
 
 ### 5.2 화면 설계
-- 화면은 gif파일로 업로드해주세요.
  
 <table>
     <tbody>
